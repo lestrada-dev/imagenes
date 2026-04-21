@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bullet Journal Shop</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Special+Elite&display=swap" rel="stylesheet">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+background:#f4f7fb;
+font-family:'Special Elite', cursive;
+color:#333;
+}
+
+h1,h2,h3{
+font-family:'Playfair Display', serif;
+color:#1d3557;
+}
+
+/* NAV */
+nav{
+background:#a8c5e6;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+}
+
+.menu a{
+margin:0 10px;
+text-decoration:none;
+color:#1d3557;
+font-size:14px;
+}
+
+.cart-btn{
+cursor:pointer;
+}
+
+/* HERO */
+.hero{
+text-align:center;
+padding:60px 20px;
+background:#dbe9f6;
+}
+
+/* SECCIONES */
+.section{
+padding:50px 25px;
+max-width:1000px;
+margin:auto;
+line-height:1.8;
+}
+
+/* PRODUCTOS */
+.products{
+background:white;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:#f9fbff;
+padding:15px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,0.05);
+text-align:center;
+}
+
+/* IMAGENES MEJORADAS */
+.img-box{
+position:relative;
+}
+
+.img-box img{
+width:100%;
+border-radius:10px;
+transition:0.3s;
+object-fit:cover;
+height:200px;
+}
+
+.img-box img.hover{
+position:absolute;
+top:0;
+left:0;
+opacity:0;
+}
+
+.img-box:hover img.hover{
+opacity:1;
+}
+
+.card p{
+font-size:13px;
+margin:10px 0;
+}
+
+.card button{
+margin:5px;
+padding:8px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.add{background:#a8c5e6;}
+.buy{background:#1d3557;color:white;}
+
+/* BLOG */
+.blog-card{
+background:#f0f6ff;
+padding:25px;
+border-radius:15px;
+margin-bottom:20px;
+}
+
+/* CARRITO */
+.cart{
+position:fixed;
+right:-350px;
+top:0;
+width:350px;
+height:100%;
+background:white;
+box-shadow:-5px 0 10px rgba(0,0,0,0.2);
+padding:20px;
+transition:0.3s;
+overflow:auto;
+}
+
+.cart.active{right:0;}
+
+.cart-item{
+border-bottom:1px solid #ccc;
+padding:10px 0;
+}
+
+.remove{
+color:red;
+cursor:pointer;
+font-size:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV COMPLETO -->
+<nav>
+<div>Bullet Journal Shop</div>
+
+<div class="menu">
+<a href="#sobre">Sobre mí</a>
+<a href="#valores">Valores</a>
+<a href="#productos">Productos</a>
+<a href="#blog">Blog</a>
+<a href="#porque">¿Por qué?</a>
+</div>
+
+<div class="cart-btn" onclick="toggleCart()">🛒 (<span id="count">0</span>)</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+<h1>Organiza tu vida con Bullet Journal</h1>
+<p>Una forma sencilla de mejorar tu organización, reducir el estrés y tener mejores resultados en la escuela.</p>
+</div>
+
+<!-- SOBRE -->
+<section id="sobre" class="section">
+<h2>Sobre mí</h2>
+<p>
+Esta tienda nace a partir de la necesidad de encontrar una forma sencilla y efectiva de organizar la vida escolar. 
+El bullet journal no solo es una libreta, sino una herramienta que permite tener claridad mental, mejorar la productividad y reducir el estrés.
+</p>
+</section>
+
+<!-- VALORES -->
+<section id="valores" class="section">
+<h2>Valores y objetivos</h2>
+<p>
+Buscamos ayudar a los estudiantes a desarrollar hábitos de organización reales. 
+Promovemos la creatividad, el orden y el bienestar emocional a través de herramientas simples pero funcionales.
+</p>
+</section>
+
+<!-- PRODUCTOS -->
+<section id="productos" class="section products">
+<h2>Productos más vendidos</h2>
+
+<div class="grid">
+
+<!-- BULLET 1 -->
+<div class="card">
+<div class="img-box">
+<img src="https://images.unsplash.com/photo-1517842645767-c639042777db">
+<img class="hover" src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe">
+</div>
+<h3>Bullet Journal Verde Oliva</h3>
+<p>Cuaderno punteado con hojas de alto gramaje ideal para organización diaria.</p>
+<p>$150 MXN</p>
+<button class="add" onclick="add('Verde',150)">Agregar</button>
+<button class="buy" onclick="buyNow('Verde')">Comprar</button>
+</div>
+
+<!-- BULLET 2 -->
+<div class="card">
+<div class="img-box">
+<img src="https://images.unsplash.com/photo-1524499982521-1ffd58dd89ea">
+<img class="hover" src="https://images.unsplash.com/photo-1531346680769-a1d79b57de5c">
+</div>
+<h3>Bullet Azul Pastel</h3>
+<p>Diseño limpio y minimalista perfecto para estudiantes.</p>
+<p>$150 MXN</p>
+<button class="add" onclick="add('Azul Pastel',150)">Agregar</button>
+<button class="buy" onclick="buyNow('Azul Pastel')">Comprar</button>
+</div>
+
+<!-- BULLET 3 -->
+<div class="card">
+<div class="img-box">
+<img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66">
+<img class="hover" src="https://images.unsplash.com/photo-1516979187457-637abb4f9353">
+</div>
+<h3>Bullet Azul Marino</h3>
+<p>Cuaderno elegante con cuadrícula para mayor precisión.</p>
+<p>$150 MXN</p>
+<button class="add" onclick="add('Marino',150)">Agregar</button>
+<button class="buy" onclick="buyNow('Marino')">Comprar</button>
+</div>
+
+<!-- PLUMAS -->
+<div class="card">
+<div class="img-box">
+<img src="https://images.unsplash.com/photo-1580910051074-3eb694886505">
+<img class="hover" src="https://images.unsplash.com/photo-1524499982521-1ffd58dd89ea">
+</div>
+<h3>Set de Plumas</h3>
+<p>12 colores para organizar, decorar y personalizar tu journal.</p>
+<p>$50 MXN</p>
+<button class="add" onclick="add('Plumas',50)">Agregar</button>
+<button class="buy" onclick="buyNow('Plumas')">Comprar</button>
+</div>
+
+<!-- MARCADORES -->
+<div class="card">
+<div class="img-box">
+<img src="https://images.unsplash.com/photo-1587614382346-ac9e0f0fbe1d">
+<img class="hover" src="https://images.unsplash.com/photo-1525909002-1b05e0c869d8">
+</div>
+<h3>Plumones de Alcohol</h3>
+<p>Doble punta ideal para lettering y diseño.</p>
+<p>$100 MXN</p>
+<button class="add" onclick="add('Plumones',100)">Agregar</button>
+<button class="buy" onclick="buyNow('Plumones')">Comprar</button>
+</div>
+
+</div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="section">
+<h2>Blog</h2>
+<div class="blog-card">
+<h3>¿Qué es el Bullet Journal?</h3>
+<p>Es un sistema flexible que ayuda a organizar tareas, ideas y metas en un solo lugar.</p>
+</div>
+</section>
+
+<!-- PORQUE -->
+<section id="porque" class="section">
+<h2>¿Por qué comprarnos?</h2>
+<p>
+Ofrecemos productos de calidad junto con contenido que realmente ayuda a mejorar la organización personal.
+</p>
+</section>
+
+<!-- CARRITO -->
+<div class="cart" id="cart">
+<h2>Carrito</h2>
+<div id="cartItems"></div>
+<h3>Total: $<span id="total">0</span></h3>
+</div>
+
+<script>
+
+let cart=[];
+
+function add(name,price){
+let item=cart.find(p=>p.name===name);
+if(item){item.qty++;}
+else{cart.push({name,price,qty:1});}
+renderCart();
+}
+
+function remove(name){
+cart=cart.filter(p=>p.name!==name);
+renderCart();
+}
+
+function renderCart(){
+let html="";
+let total=0;
+let count=0;
+
+cart.forEach(item=>{
+total+=item.price*item.qty;
+count+=item.qty;
+
+html+=`
+<div class="cart-item">
+${item.name} x${item.qty} - $${item.price*item.qty}
+<br><span class="remove" onclick="remove('${item.name}')">Eliminar</span>
+</div>`;
+});
+
+document.getElementById("cartItems").innerHTML=html;
+document.getElementById("total").innerText=total;
+document.getElementById("count").innerText=count;
+}
+
+function toggleCart(){
+document.getElementById("cart").classList.toggle("active");
+}
+
+function buyNow(name){
+alert("Compra simulada de: "+name);
+}
+
+</script>
+
+</body>
+</html>
